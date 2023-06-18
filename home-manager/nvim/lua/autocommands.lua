@@ -1,0 +1,11 @@
+vim.cmd[[autocmd InsertEnter * :set norelativenumber]]
+vim.cmd[[autocmd InsertLeave * :set relativenumber]]
+vim.cmd[[autocmd FileType markdown setlocal shiftwidth=2]]
+vim.cmd[[autocmd FileType c setlocal noexpandtab]]
+vim.cmd[[autocmd FileType gdscript3 setlocal noexpandtab]]
+vim.cmd[[autocmd FileType go setlocal noexpandtab]]
+vim.cmd[[autocmd FileType go setlocal colorcolumn=100]]
+vim.cmd[[autocmd FileType typescript setlocal shiftwidth=2]]
+vim.cmd[[autocmd BufEnter * :set laststatus=3]]
+
+vim.cmd[[autocmd FileType typescript :nmap <leader>cs <cmd>lua vim.lsp.buf.format({ formatting_options = { tabSize = 2, semicolons = 'insert', insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false } })<cr>]]
