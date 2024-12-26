@@ -1,0 +1,28 @@
+[font]
+size = 10.5
+
+[font.bold]
+family = "Nimbus Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Nimbus Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Nimbus Mono"
+style = "Italic"
+
+[font.normal]
+family = "Nimbus Mono"
+style = "Regular"
+
+[window.padding]
+x = 2
+y = 2
+
+[colors.primary]
+background = "#171717"
+
+[cursor.style]
+blinking = "always"

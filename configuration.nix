@@ -30,10 +30,23 @@
     };
   };
 
-  networking.hostName = "thinkpad"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openvpn
+    networkmanager-openconnect
+  ];
+  services.mullvad-vpn.enable = true;
+  services.avahi = {
+    enable = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -69,7 +82,12 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
+  security.pam.services.waylock = {
+    text = '' auth include login '';
+  };
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -78,6 +96,8 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+
+  services.blueman.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -102,14 +122,19 @@
     unzip
   ];
 
-  programs.hyprland.enable = true;
-  programs.bash.enableCompletion = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+  programs.bash.completion.enable = true;
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = [];
 
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
     ];
     wlr = {
       enable = true;
@@ -122,15 +147,25 @@
     enable = true;
     settings = {
       default_session = {
-        command = "tuigreet --cmd 'Hyprland'";
+        command = "tuigreet --cmd 'sway'";
         user = "greeter";
       };
     };
     vt = 2;
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "CascadiaCode" "JetBrainsMono" ]; })
+  virtualisation.docker.enable = true;
+
+  fonts.packages = with pkgs; [
+    noto-fonts
+    roboto
+    inter
+    cantarell-fonts
+    font-awesome
+    terminus_font_ttf
+    courier-prime
+    cascadia-code
+    (nerdfonts.override { fonts = [ "CascadiaCode" "JetBrainsMono" "FiraCode" "RobotoMono" "UbuntuMono" "Terminus" "Cousine" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -1,9 +1,4 @@
-require'bootstrap'
-require'general'
-require'commands'
-require'bindings'
-require'autocommands'
-require'colorscheme'
-
-require'plugins'
-require'lsp'
+require"lazy_nvim"
+require"general"
+require"hotkeys"
+require"lsp"
