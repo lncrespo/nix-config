@@ -15,9 +15,11 @@ in
 
   home-manager.users.${user} = { pkgs, ... }: {
     home.stateVersion = "23.05";
-    home.packages = with pkgs; [
-      alacritty
+    home.packages = with pkgs; let oldPkg = import (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/21808d22b1cda1898b71cf1a1beb524a97add2c4.tar.gz";
+    }) {}; in [
       tmux
+      librewolf-wayland
       firefox-wayland
       neovim
       fd
@@ -35,7 +37,6 @@ in
       zathura
       gammastep
       openconnect
-      chromium
       wl-clipboard
       xdg-utils
       grim
@@ -45,6 +46,7 @@ in
       brightnessctl
       thunderbird
       mullvad-vpn
+      kitty
     ];
 
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -76,6 +78,11 @@ in
 
     home.file.".config/sway" = {
       source = ./home-manager/sway;
+      recursive = true;
+    };
+
+    home.file.".config/kitty" = {
+      source = ./home-manager/kitty;
       recursive = true;
     };
 
