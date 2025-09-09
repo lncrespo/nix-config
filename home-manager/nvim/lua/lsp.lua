@@ -1,30 +1,36 @@
 local lspconfig = require'lspconfig'
 
-lspconfig.gopls.setup{
+vim.lsp.config('gopls', {
     on_attach = function(client, bufnr)
         require'lsp_signature'.on_attach(signature_config)
     end,
-}
+})
+vim.lsp.enable('gopls')
 
-lspconfig.ts_ls.setup{
+vim.lsp.config('ts_ls', {
+    root_dir = function(bufnr, on_dir)
+        on_dir(vim.fn.getcwd())
+    end,
+})
+vim.lsp.enable('ts_ls')
+
+vim.lsp.enable('yamlls')
+
+vim.lsp.config('phpactor', {
     root_dir = function()
         return vim.fn.getcwd()
     end,
-}
+})
+vim.lsp.enable('phpactor')
 
-lspconfig.yamlls.setup{}
-
-lspconfig.phpactor.setup{
+vim.lsp.config('terraformls', {
     root_dir = function()
         return vim.fn.getcwd()
     end,
-}
+})
+vim.lsp.enable('terraformls')
 
-require'lspconfig'.terraformls.setup{
-    root_dir = function()
-        return vim.fn.getcwd()
-    end,
-}
+vim.lsp.enable('svelte')
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, { focusable = false }

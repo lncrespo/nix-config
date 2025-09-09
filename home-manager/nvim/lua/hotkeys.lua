@@ -8,7 +8,7 @@ vim.api.nvim_set_keymap('n', '<C-H>', '<C-W><C-H>', { noremap = true });
 vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree reveal<cr>', { noremap = true });
 
 vim.api.nvim_set_keymap('n', '<leader>ld', '<cmd>Lspsaga goto_definition<cr>', { noremap = true });
-vim.api.nvim_set_keymap('n', '<leader>lh', '<cmd>Lspsaga hover_doc<cr>', { noremap = true });
+vim.api.nvim_set_keymap('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<cr>', { noremap = true });
 vim.api.nvim_set_keymap('n', '<leader>lf', '<cmd>Lspsaga finder<cr>', { noremap = true });
 vim.api.nvim_set_keymap('n', '<leader>lr', '<cmd>Lspsaga rename<cr>', { noremap = true });
 vim.api.nvim_set_keymap('n', '<leader>lcs', '<cmd>lua vim.lsp.buf.format({async=true})<cr>', { noremap = true });

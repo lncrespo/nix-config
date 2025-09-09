@@ -17,7 +17,20 @@ require("lazy").setup({
     priority = 999,
     lazy = false,
     config = function()
-      vim.cmd[[ colorscheme vscode ]]
+      -- vim.cmd[[ colorscheme vscode ]]
+      -- vim.cmd[[ hi Normal guibg=#1e1e1e ]]
+      -- vim.cmd[[ hi NeoTreeNormal guibg=#1a1a1a ]]
+      -- vim.cmd[[ hi NeoTreeNormalNC guibg=#1a1a1a ]]
+      -- vim.cmd[[ hi NeoTreeCursorLine guibg=#454545 ]]
+
+      -- vim.cmd[[ hi @keyword guifg=#d8a0df ]]
+      -- vim.cmd[[ hi @keyword.return guifg=#d8a0df ]]
+      -- vim.cmd[[ hi @keyword.conditional guifg=#d8a0df ]]
+      -- vim.cmd[[ hi @keyword.exception guifg=#d8a0df ]]
+      -- vim.cmd[[ hi @keyword.repeat guifg=#d8a0df ]]
+      -- vim.cmd[[ hi @keyword.import guifg=#d8a0df ]]
+      -- vim.cmd[[ hi @type guifg=#4ec9b0 ]]
+      -- vim.cmd[[ hi @function.macro guifg=#beb7ff ]]
     end
   },
   {
@@ -31,14 +44,14 @@ require("lazy").setup({
     priority = 999,
     lazy = false,
     config = function()
-      -- vim.g.gruvbox_material_background = 'hard'
+      vim.g.gruvbox_material_background = 'hard'
       -- local hour = os.date('*t').hour
       -- vim.o.background = 'light'
       -- if hour > 19 or hour < 9 then
       --   vim.o.background = 'dark'
       -- end
 
-      -- vim.cmd[[ colorscheme gruvbox-material ]]
+      vim.cmd[[ colorscheme gruvbox-material ]]
     end
   },
   {
@@ -154,6 +167,7 @@ require("lazy").setup({
     end
   },
 
+  'hrsh7th/vim-vsnip',
   'hrsh7th/cmp-vsnip',
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
@@ -181,6 +195,7 @@ require("lazy").setup({
 
       local cmp = require'cmp'
         cmp.setup({
+          preselect = cmp.PreselectMode.None,
           snippet = {
             expand = function(args)
               -- For `vsnip` user.
@@ -192,7 +207,7 @@ require("lazy").setup({
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
             ['<C-Space>'] = cmp.mapping.complete(),
             ['<C-e>'] = cmp.mapping.close(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
             ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item()),
             ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item()),
           },

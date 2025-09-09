@@ -47,6 +47,7 @@ in
       thunderbird
       mullvad-vpn
       kitty
+      xarchiver
     ];
 
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -83,6 +84,11 @@ in
 
     home.file.".config/kitty" = {
       source = ./home-manager/kitty;
+      recursive = true;
+    };
+
+    home.file.".config/mako" = {
+      source = ./home-manager/mako;
       recursive = true;
     };
 
