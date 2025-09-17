@@ -113,17 +113,21 @@ in
       };
       font = {
         package = pkgs.jetbrains-mono;
-        name = "JetBrains Mono Nerd Font";
-        size = 9;
+        name = "JetBrains Mono";
+	size = 12;
       };
       theme = {
         package = pkgs.graphite-gtk-theme;
-        name = "Graphite";
+        name = "Graphite-Dark";
+      };
+      iconTheme = {
+      	package = pkgs.tela-icon-theme;
+	name = "Tela black dark";
       };
     };
 
     services.mako = {
-        enable = true;
+    	enable = true;
     };
     services.cliphist.enable = true;
   };

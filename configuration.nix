@@ -129,6 +129,10 @@
   programs.bash.completion.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = [];
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [ thunar-archive-plugin ];
+  };
 
   xdg.portal = {
     enable = true;
@@ -151,7 +155,6 @@
         user = "greeter";
       };
     };
-    vt = 2;
   };
 
   virtualisation.docker.enable = true;
@@ -162,10 +165,13 @@
     inter
     cantarell-fonts
     font-awesome
-    terminus_font_ttf
-    courier-prime
-    cascadia-code
-    (nerdfonts.override { fonts = [ "CascadiaCode" "JetBrainsMono" "FiraCode" "RobotoMono" "UbuntuMono" "Terminus" "Cousine" ]; })
+    adwaita-fonts
+    iosevka
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.monaspace
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
